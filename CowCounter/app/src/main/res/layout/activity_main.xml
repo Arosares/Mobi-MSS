@@ -55,7 +55,8 @@
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
         android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2">
+        android:layout_alignEnd="@+id/button2"
+        android:id="@+id/tableRow">
 
 
         <TextView
@@ -112,5 +113,14 @@
         android:layout_alignStart="@+id/button2"
         android:layout_alignRight="@+id/button2"
         android:layout_alignEnd="@+id/button2" />
+
+    <TextView
+        android:text="Cows: 0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView5" />
 
 </RelativeLayout>
