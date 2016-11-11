@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText textFieldID = (EditText) findViewById(R.id.editText2);
 
         final TextView cowCounter = (TextView) findViewById(R.id.textView5);
+        cowCounter.setText("Cows: " + cowList.size());
 
         final TableRow tableRow = (TableRow) findViewById(R.id.tableRow);
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Created Cow:");
                     System.out.println("Breed: " + cow.getBreed() + " ID: " + cow.getCowID());
                     System.out.println("CowList: "+ cowList);
-                    
+
                 }
 
             }
@@ -85,6 +86,16 @@ public class MainActivity extends AppCompatActivity {
                     cowCounter.setText("Cows: " + cowList.size());
                     System.out.println("Removed Cow(s)\n" + cowList);
                 }
+            }
+        });
+
+        Button clearButton = (Button) findViewById(R.id.button3);
+        clearButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                List<Cow> deleteHelper = cowList;
+                cowList.removeAll(deleteHelper);
+
+                cowCounter.setText("Cows: " + cowList.size());
             }
         });
 
