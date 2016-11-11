@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         Button addButton = (Button) findViewById(R.id.button);
         addButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                String breed = textFieldBreed.getText().toString();
-                String cowID = textFieldID.getText().toString();
+                int breed = Integer.parseInt(textFieldBreed.getText().toString());
+                int cowID = Integer.parseInt(textFieldID.getText().toString());
 
 
                 Cow cow = new Cow(breed, cowID);
@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
         Button rejButton = (Button) findViewById(R.id.button2);
         rejButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                String breed = textFieldBreed.getText().toString();
-                String cowID = textFieldID.getText().toString();
+                int breed = Integer.parseInt(textFieldBreed.getText().toString());
+                int cowID = Integer.parseInt(textFieldID.getText().toString());
 
                 Cow toDelete = new Cow(breed, cowID);
                 System.out.println("toDelete: " + toDelete);
                 List<Cow> found = new LinkedList<Cow>();
                 for (Cow cow : cowList) {
-                    if (cow.getBreed() == toDelete.getBreed()){
+                    if (cow.compareTo(toDelete) == 0){
                         found.add(cow);
                         System.out.println(cow);
                     }
