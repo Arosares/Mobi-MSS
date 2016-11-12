@@ -11,6 +11,7 @@ import java.util.Comparator;
 public class Cow implements Comparable<Cow> {
     private int breed;
     private int cowID;
+    private int rowID;
 
     public Cow(int breed, int cowID){
         this.breed = breed;
@@ -24,6 +25,10 @@ public class Cow implements Comparable<Cow> {
     public int getCowID() {
         return cowID;
     }
+
+    public void setRowID(int rowID){ this.rowID = rowID; }
+
+    public int getRowID() { return rowID; }
 
     @Override
     public String toString(){

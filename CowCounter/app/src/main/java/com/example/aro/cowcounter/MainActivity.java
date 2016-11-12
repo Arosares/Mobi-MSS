@@ -19,7 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<Cow> cowList = new LinkedList<>();
-    private int rowCounter = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                     Cow cow = new Cow(breed, cowID);
-                    cowList.add(cow);
 
-                    //Edit Table
+
+                    //Add Row to Table
 
                     TableRow newRow = new TableRow(tableLayout.getContext());
                     newRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
@@ -70,13 +70,19 @@ public class MainActivity extends AppCompatActivity {
                     cowIDTable.setText(Integer.toString(cow.getCowID()));
                     cowIDTable.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
 
+                    //Add textviews to row
                     newRow.addView(cowBreedTable);
                     newRow.addView(cowIDTable);
-                    newRow.setId(rowCounter);
+                    //Generate row ID
+                    int id = newRow.generateViewId();
+                    newRow.setId(id);
 
+                    //link cow to a row
+                    cow.setRowID(id);
                     tableLayout.addView(newRow, new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
 
-
+                    //add cow to list
+                    cowList.add(cow);
 
                     //Update counter
                     cowCounter.setText("Cows: " + cowList.size());
@@ -103,17 +109,22 @@ public class MainActivity extends AppCompatActivity {
 
                     Cow toDelete = new Cow(breed, cowID);
                     System.out.println("toDelete: " + toDelete);
-                    List<Cow> found = new LinkedList<Cow>();
 
-                    //Deletes multiple occurences of a cow in the List. Not sure if desired
-                    //For only one occurence add break; in if-block
+
+                    //Find first occurence of cow toDelete in List
                     for (Cow cow : cowList) {
                         if (cow.compareTo(toDelete) == 0) {
-                            found.add(cow);
+                            toDelete = cow;
                             System.out.println(cow);
+                            break;
                         }
                     }
-                    cowList.removeAll(found);
+
+                    //Remove the cow
+                    cowList.remove(toDelete);
+                    TableRow rowToDelete = (TableRow) findViewById(toDelete.getRowID());
+                    tableLayout.removeView(rowToDelete);
+
                     cowCounter.setText("Cows: " + cowList.size());
                     System.out.println("Removed Cow(s)\n" + cowList);
                 }
@@ -124,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 List<Cow> deleteHelper = cowList;
+
+                //Delete all rows in the table
+                for (Cow cow : cowList) {
+                    TableRow rowToDelete = (TableRow) findViewById(cow.getRowID());
+                    tableLayout.removeView(rowToDelete);
+                }
+
                 cowList.removeAll(deleteHelper);
 
                 cowCounter.setText("Cows: " + cowList.size());
