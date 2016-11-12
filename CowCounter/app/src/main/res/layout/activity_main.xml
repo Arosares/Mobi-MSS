@@ -10,18 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.aro.cowcounter.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="breed"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="46dp" />
-
     <Button
         android:text="REJ"
         android:layout_width="wrap_content"
@@ -60,6 +48,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:inputType="numberSigned"
         android:ems="10"
         android:id="@+id/editText"
@@ -73,6 +62,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:inputType="numberSigned"
         android:ems="10"
         android:layout_alignTop="@+id/editText"
@@ -84,6 +74,7 @@
 
     <TextView
         android:text="Cows:"
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
@@ -101,24 +92,38 @@
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:paddingTop="20dp"
         android:id="@+id/tableLayout1"
-        android:layout_below="@+id/button2"
         android:layout_above="@+id/textView5"
         android:layout_alignStart="@+id/textView"
-        android:layout_alignEnd="@+id/textView2">
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_below="@+id/button2">
 
         <TableRow>
             <TextView
                 android:gravity="center"
                 android:text="Breed"
+                android:textSize="16dp"
                 android:id="@+id/textView3" />
 
             <TextView
                 android:gravity="center"
+                android:textSize="16dp"
                 android:text="ID"
                 android:id="@+id/textView4" />
         </TableRow>
 
     </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="breed"
+        android:id="@+id/textView"
+        android:layout_marginLeft="70dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/editText" />
 
 </RelativeLayout>
