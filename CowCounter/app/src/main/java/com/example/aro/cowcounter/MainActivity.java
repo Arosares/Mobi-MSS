@@ -5,6 +5,7 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         cowCounter.setText("Cows: " + cowList.size());
 
         final TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout1);
-
+        tableLayout.setShrinkAllColumns(true);
+        tableLayout.setStretchAllColumns(true);
 
 
 
@@ -65,10 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
                     cowBreedTable.setText(Integer.toString(cow.getBreed()));
                     cowBreedTable.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
-
+                    cowBreedTable.setGravity(Gravity.CENTER);
                     TextView cowIDTable = new TextView(newRow.getContext());
+
                     cowIDTable.setText(Integer.toString(cow.getCowID()));
                     cowIDTable.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
+                    cowIDTable.setGravity(Gravity.CENTER);
 
                     //Add textviews to row
                     newRow.addView(cowBreedTable);
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //link cow to a row
                     cow.setRowID(id);
+
                     tableLayout.addView(newRow, new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
 
                     //add cow to list
@@ -86,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
                     //Update counter
                     cowCounter.setText("Cows: " + cowList.size());
-                    System.out.println("Created Cow:");
-                    System.out.println("Breed: " + cow.getBreed() + " ID: " + cow.getCowID());
-                    System.out.println("CowList: "+ cowList);
 
                 }
 
@@ -115,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                     for (Cow cow : cowList) {
                         if (cow.compareTo(toDelete) == 0) {
                             toDelete = cow;
-                            System.out.println(cow);
                             break;
                         }
                     }
@@ -126,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                     tableLayout.removeView(rowToDelete);
 
                     cowCounter.setText("Cows: " + cowList.size());
-                    System.out.println("Removed Cow(s)\n" + cowList);
                 }
             }
         });
@@ -137,10 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 List<Cow> deleteHelper = cowList;
 
                 //Delete all rows in the table
-                for (Cow cow : cowList) {
-                    TableRow rowToDelete = (TableRow) findViewById(cow.getRowID());
-                    tableLayout.removeView(rowToDelete);
-                }
+                tableLayout.removeAllViews();
 
                 cowList.removeAll(deleteHelper);
 

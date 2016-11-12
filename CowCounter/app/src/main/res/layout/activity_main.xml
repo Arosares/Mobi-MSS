@@ -102,21 +102,20 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/tableLayout1"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/button2"
-        android:layout_above="@+id/textView5">
+        android:layout_above="@+id/textView5"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignEnd="@+id/textView2">
 
         <TableRow>
             <TextView
-                android:layout_column="1"
+                android:gravity="center"
                 android:text="Breed"
-                android:padding="7dip"
                 android:id="@+id/textView3" />
 
             <TextView
+                android:gravity="center"
                 android:text="ID"
-                android:gravity="right"
-                android:padding="7dip"
                 android:id="@+id/textView4" />
         </TableRow>
 
